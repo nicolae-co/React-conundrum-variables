@@ -1,19 +1,22 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
 
-  const thingsArray = ["Thing 1", "Thing 2"]
-  const mapThings = thingsArray.map(item => <p key={item}>{item}</p>)
+  const [thingArray, setThingArray] = useState(["Thing 1", "Thing 2"])
+
+  
 
   function addThing() {
-    thingsArray.push(`Thing ${thingsArray.length + 1}`)
-    console.log(thingsArray)
+    setThingArray(prevState => [...prevState, `Thing ${prevState.length + 1}`])
   }
+
+  const thingsElemets = thingArray.map(item => <p>{item}</p>)
 
   return (
     <div className="App">
       <button onClick={addThing}>Add Item</button>
-      {mapThings}
+      {thingsElemets}
     </div>
   )
 }
